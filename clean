@@ -1,0 +1,8 @@
+#!/bin/bash
+
+rm -rf "$HOME/.adobe/" "$HOME/.babel.json" "$HOME/.bash_history" "$HOME/.byobu/" \
+	"$HOME/.cache/" "$HOME/.dbus/" "$HOME/Downloads/" "$HOME/.gconf/" "$HOME/.lesshst" \
+	"$HOME/.macromedia/" "$HOME/.mozilla/" "$HOME/.npm/" "$HOME/.xsession-errors" \
+	"$HOME/.zcomp*" "$HOME/.zsh_history"
+
+mkdir "$HOME/Downloads"
