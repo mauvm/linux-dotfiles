@@ -63,3 +63,6 @@ source "$DOTFILES/zsh/aliases"
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Disable less history
+LESSHISTSIZE=0
