@@ -1,0 +1,38 @@
+alias l="ls -lah"
+alias ..="cd .."
+alias ...="cd ../.."
+alias t="tree -a -L 3 -I '.git|node_modules'"
+alias d="cd $HOME/Development"
+
+g () {
+	if [[ $# -eq 0 ]]; then
+		g s
+	else
+		hub $*
+	fi
+}
+alias gac="g add -A . && g commit -m"
+
+alias paste="xclip -o -selection clipboard 2>/dev/null"
+alias p="paste"
+
+alias wnetworks="nmcli dev wifi list"
+wconnect () {
+	echo -n "[wifi] password for $1: "
+	read -s PW
+	echo
+	sudo nmcli dev wifi con "$1" password "$PW"
+}
+
+alias sqlbuddy="docker run --rm -it -p 127.0.0.1:8010:80 -e SERVER_NAME=localhost -e SERVER_ADMIN=maurits@nerdieworks.nl -e SQLBUDDY_URL=/ -e LOG_LEVEL=debug --name sqlbuddy volkerwiegand/sqlbuddy:1.3.3"
+alias php="docker run --rm -it -p 0.0.0.0:8080:80 -v \$(pwd):/data --workdir=/data --name php php php"
+phpserv () {
+	echo "Starting server on localhost:8080.."
+	php -S 0.0.0.0:80
+}
+mysqlserv () {
+	STARTUP_SQL=
+	[ -n "$4" ] && STARTUP_SQL="/data/$4"
+	
+	docker run --rm -it -p 127.0.0.1:3306:3306 -v $(pwd):/data --workdir=/data -e "MYSQL_USER=$1" -e "MYSQL_PASS=$2" -e "ON_CREATE_DB=$3" -e STARTUP_SQL="$STARTUP_SQL" --name mysql tutum/mysql:5.6
+}

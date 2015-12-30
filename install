@@ -1,0 +1,16 @@
+#!/bin/bash
+
+relink () {
+	unlink "$2" 2> /dev/null
+	ln -s "$1" "$2"
+}
+
+relink ".dotfiles/X11/xinitrc"  "$HOME/.xinitrc"
+relink ".dotfiles/xterm/config" "$HOME/.Xdefaults"
+relink ".dotfiles/zsh/config"   "$HOME/.zshrc"
+relink ".dotfiles/i3/config"    "$HOME/.i3"
+relink ".dotfiles/i3/status"    "$HOME/.i3status.conf"
+relink ".dotfiles/git/config"   "$HOME/.gitconfig"
+relink ".dotfiles/vim/config"   "$HOME/.vimrc"
+
+./fzf/install

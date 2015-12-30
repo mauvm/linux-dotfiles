@@ -1,0 +1,11 @@
+# Map Caps Lock to Escape
+setxkbmap -option caps:escape &
+
+# Improve touchpad
+xinput set-prop "bcm5974" "Synaptics Palm Detection" 1
+xinput set-prop "bcm5974" "Synaptics Scrolling Distance" -243, -243 # Natural scrolling
+
+# XTerm config
+xrdb -merge "$HOME/.dotfiles/xterm/config"
+
+exec i3

@@ -1,0 +1,9 @@
+[alias]
+	s = status -sb
+	ps = push
+	pl = pull
+	a = add -A .
+	c = commit -m
+[user]
+	email = maurits@nerdieworks.nl
+	name = Maurits van Mastrigt

@@ -1,0 +1,153 @@
+# Variables
+set $mod Mod4
+set $super $mod
+set $alt Mod1
+
+# Orientation
+default_orientation vertical
+
+# Font
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:DroidSansMono 14
+#font pango:DejaVuSansMono 14
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Applications
+bindsym $mod+Return exec xterm
+bindsym $mod+b exec firefox
+bindsym $mod+t exec telegram
+bindsym $mod+s exec scudcloud
+
+# Paste
+#bindsym Control+Shift+v exec xdotool click 2
+
+# Delete
+#bindsym Shift+BackSpace exec xdotool keyup control && sleep 0.1 && xdotool key Delete
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+#bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# Change workspace
+bindsym $mod+h workspace prev
+bindsym $mod+j workspace 1
+bindsym $mod+k workspace back_and_forth
+bindsym $mod+l workspace next
+
+# Change focus
+bindsym $mod+Shift+h focus left
+bindsym $mod+Shift+j focus up
+bindsym $mod+Shift+k focus down
+bindsym $mod+Shift+l focus right
+
+# Move focused window
+bindsym $mod+Control+h move left
+bindsym $mod+Control+j move up
+bindsym $mod+Control+k move down
+bindsym $mod+Control+l move right
+
+# Split
+#bindsym $mod+h split h
+#bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# Change container layout (stacked, tabbed, toggle split)
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# Switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# Exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym Control+Shift+e exec i3-msg exit
+
+# Lock screen
+bindsym Control+Shift+l exec i3lock --color=101010
+
+# Colors
+# class                 border  backgr. text    indicator
+client.focused          #101010 #444444 #ffffff #484e50
+client.focused_inactive #222222 #222222 #888888 #292d2e
+client.unfocused        #222222 #222222 #888888 #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
+client.background       #101010
+
+# Window style
+for_window [class="^.*"] border pixel 1
+new_window 1pixel
+
+# Default workspaces
+# Use xprop to determine class
+assign [class="xterm"] 1
+assign [class="Firefox"] 2
+assign [class="telegram"] 3
+assign [class="Scudcloud"] 4
+
+# Resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
+bar {
+	#status_command i3status
+	status_command $HOME/.dotfiles/i3/conky-i3bar
+
+	colors {
+		background #101010
+		statusline #d0d0d0
+		
+		focused_workspace #d0d0d0 #333333 #ffffff
+	}
+}

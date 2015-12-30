@@ -1,0 +1,151 @@
+" Init Vundle
+set nocompatible
+filetype off
+set rtp+=~/.dotfiles/vim/bundle/Vundle.vim
+call vundle#begin('~/.dotfiles/vim/bundle')
+Plugin 'gmarik/Vundle.vim'
+
+" Start of plugins
+Plugin 'kien/ctrlp.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'airblade/vim-gitgutter'
+
+Plugin 'ekalinin/Dockerfile.vim'
+
+" End of plugins
+call vundle#end()
+syntax on
+filetype indent plugin on
+
+set shell=/bin/zsh
+set title
+
+let mapleader = ','
+
+set number                             " Enable line numbers
+set t_Co=256                           " Enable 256 colors
+set laststatus=2                       " Always show statusbar
+
+" colorscheme monokai
+
+" No Beep
+set noeb vb t_vb=
+au GUIEnter * set vb t_vb=
+
+" ES6 Syntax Highlighting
+autocmd BufNewFile,BufReadPost *.es6 set filetype=javascript
+
+" No folding in Markdown files
+let g:vim_markdown_folding_disabled=1
+
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+set backspace=indent,eol,start
+
+" Keep backup files and store them in /tmp
+set backup
+set backupdir=/tmp,.
+set directory=/tmp,.
+
+set noundofile
+set history=50                         " Keep 50 lines of command history
+set ruler
+set showcmd                            " Display incomplete commands
+set incsearch                          " Do incremental searching
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" CTRL-U in insert mode deletes a lot. Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+
+" Open CtrlP withe leader-p
+" let g:ctrlp_map = '<leader>p'
+
+" Open CtrpTag with leader-t
+" nnoremap <leader>t :CtrlPTag<cr>
+
+" Open CtrlPBuffer with leader-b
+" nnoremap <leader>b :CtrlPBuffer<cr>
+
+" Exclude files and folders from indexing.
+let g:ctrlp_custom_ignore = {
+    \'dir': '\v(\.git|cache|vendor|node_modules)$',
+    \'file': '\v(\.pyc|tags)$'
+    \ }
+
+" Disable arrow keys
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" Highlight the last search pattern
+set hlsearch
+
+" Case insensitive search
+set ic
+
+" Put these in an autocmd group, so that we can delete them easily.
+augroup vimrcEx
+au!
+	" For all text files set 'textwidth' to 120 characters.
+	autocmd FileType text setlocal textwidth=120
+
+	" When editing a file, always jump to the last known cursor position.
+	" Don't do it when the position is invalid or when inside an event handler
+	" (happens when dropping a file on gvim).
+	" Also don't do it when the mark is in the first line, that is the default
+	" position when opening a file.
+	autocmd BufReadPost *
+	\ if line("'\"") > 1 && line("'\"") <= line("$") |
+	\   exe "normal! g`\"" |
+	\ endif
+augroup END
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+" Indent using tabs, preserve indent
+set noet ci pi sts=0 sw=4 ts=4
+
+set smartindent
+
+" Change space indentation into tabs
+command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
+
+set number                             " Enable line numbers
+set scrolloff=5
+
+" H: Go to beginning of line
+noremap H ^
+
+" J: expand-region
+map K <Plug>(expand_region_expand)
+
+" K: shrink-region
+map J <Plug>(expand_region_shrink)
+
+" L: Go to end of line
+noremap L g_
+
+" Enter: Save file with enter
+nnoremap <cr> :w<cr>
+
+" Cmd + C: Copy to clipboard
+vnoremap <leader>c :w !pbcopy<cr><cr>
+
+" Cmd + V: Paste from clipboard
+nnoremap <leader>v :r !pbpaste<cr>
+
+" F5: Compile Documark
+noremap <F5> :silent !documark compile<cr> :redraw!<cr>
