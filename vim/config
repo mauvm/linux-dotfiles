@@ -142,10 +142,10 @@ noremap L g_
 nnoremap <cr> :w<cr>
 
 " Cmd + C: Copy to clipboard
-vnoremap <leader>c :w !pbcopy<cr><cr>
+vnoremap <leader>c :w !xclip -i -selection clipboard<cr><cr>
 
 " Cmd + V: Paste from clipboard
-nnoremap <leader>v :r !pbpaste<cr>
+nnoremap <leader>v :r !xclip -o -selection clipboard<cr>
 
 " F5: Compile Documark
 noremap <F5> :silent !documark compile<cr> :redraw!<cr>
