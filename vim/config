@@ -63,6 +63,12 @@ inoremap <C-U> <C-G>u<C-U>
 " Open CtrlP withe leader-p
 " let g:ctrlp_map = '<leader>p'
 
+" Open in tab by default
+let g:ctrlp_prompt_mappings = {
+	\ 'AcceptSelection("e")': ['<c-t>'],
+	\ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+	\ }
+
 " Open CtrpTag with leader-t
 " nnoremap <leader>t :CtrlPTag<cr>
 
@@ -71,9 +77,9 @@ inoremap <C-U> <C-G>u<C-U>
 
 " Exclude files and folders from indexing.
 let g:ctrlp_custom_ignore = {
-    \'dir': '\v(\.git|cache|vendor|node_modules)$',
-    \'file': '\v(\.pyc|tags)$'
-    \ }
+	\'dir': '\v(\.git|cache|vendor|node_modules)$',
+	\'file': '\v(\.pyc|tags)$'
+	\ }
 
 " Disable arrow keys
 inoremap <Up> <NOP>
@@ -90,6 +96,9 @@ set hlsearch
 
 " Case insensitive search
 set ic
+
+" Hightlight colors
+hi Search cterm=NONE ctermfg=Blue ctermbg=Black
 
 " Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx

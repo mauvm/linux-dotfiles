@@ -15,16 +15,16 @@ font pango:DroidSansMono 14
 floating_modifier $mod
 
 # Applications
-bindsym $mod+Return exec xterm
-bindsym $mod+b exec firefox
-bindsym $mod+t exec telegram
-bindsym $mod+s exec scudcloud
+bindsym $mod+Return exec --no-startup-id xterm
+bindsym $mod+b exec --no-startup-id firefox
+bindsym $mod+t exec --no-startup-id telegram
+bindsym $mod+s exec --no-startup-id scudcloud
 
 # Paste
-#bindsym Control+Shift+v exec xdotool click 2
+bindsym $mod+v exec --no-startup-id xdotool click 2
 
 # Delete
-#bindsym Shift+BackSpace exec xdotool keyup control && sleep 0.1 && xdotool key Delete
+bindsym Shift+BackSpace exec --no-startup-id xdotool keyup Shift && sleep 0.01 && xdotool key Delete
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -106,6 +106,10 @@ bindsym Control+Shift+e exec i3-msg exit
 
 # Lock screen
 bindsym Control+Shift+l exec i3lock --color=101010
+
+# Brightness
+bindcode 232 exec xbacklight - 10
+bindcode 233 exec xbacklight + 10
 
 # Colors
 # class                 border  backgr. text    indicator
