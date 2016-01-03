@@ -1,16 +1,37 @@
 #!/bin/bash
 
+DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+separator () {
+	echo "=> $1"
+}
 relink () {
-	unlink "$2" 2> /dev/null
+	if [ -L "$2" ]; then
+		# Remove existing symlink
+		unlink "$2" 2> /dev/null
+	fi
+	if [ -f "$2" ]; then
+		# Backup existing file
+		rm "$2.bak" 2> /dev/null
+		mv "$2" "$2.bak"
+	fi
+
 	ln -s "$1" "$2"
 }
 
-relink ".dotfiles/X11/xinitrc"  "$HOME/.xinitrc"
-relink ".dotfiles/xterm/config" "$HOME/.Xdefaults"
-relink ".dotfiles/zsh/config"   "$HOME/.zshrc"
-relink ".dotfiles/i3/config"    "$HOME/.i3"
-relink ".dotfiles/i3/status"    "$HOME/.i3status.conf"
-relink ".dotfiles/git/config"   "$HOME/.gitconfig"
-relink ".dotfiles/vim/config"   "$HOME/.vimrc"
+separator "Symlinking files in home directory.."
+relink "$DIR/X11/xinitrc"    "$HOME/.xinitrc"
+relink "$DIR/xterm/config"   "$HOME/.Xdefaults"
+relink "$DIR/zsh/config"     "$HOME/.zshrc"
+relink "$DIR/zsh/aliases"    "$HOME/.aliases"
+relink "$DIR/i3/config"      "$HOME/.i3"
+relink "$DIR/i3/status.conf" "$HOME/.i3status.conf"
+relink "$DIR/git/config"     "$HOME/.gitconfig"
+relink "$DIR/vim/config"     "$HOME/.vimrc"
 
-./fzf/install
+separator "Installing FZF.."
+"$DIR/fzf/install" --key-bindings --completion
+
+separator "Symlinking X11 start script.."
+sudo rm /etc/X11/Xsession.d/99x11-common_start 2> /dev/null
+sudo cp "$DIR/X11/start" "/etc/X11/Xsession.d/99x11-common_start"

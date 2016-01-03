@@ -66,3 +66,8 @@ source "$DOTFILES/zsh/aliases"
 
 # Disable less history
 LESSHISTSIZE=0
+
+# Start X (if on tty1 and not running XTerm)
+if [ "$TERM" = "linux" ] && [ "$(tty)" = "/dev/tty1" ]; then
+	startx && exit 0
+fi

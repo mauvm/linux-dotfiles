@@ -2,7 +2,9 @@
 
 rm -rf "$HOME/.adobe/" "$HOME/.babel.json" "$HOME/.bash_history" "$HOME/.byobu/" \
 	"$HOME/.cache/" "$HOME/.dbus/" "$HOME/Downloads/" "$HOME/.gconf/" "$HOME/.lesshst" \
-	"$HOME/.macromedia/" "$HOME/.mozilla/" "$HOME/.npm/" "$HOME/.xsession-errors" \
-	"$HOME/.zcomp*" "$HOME/.zsh_history"
+	"$HOME/.macromedia/" "$HOME/.npm/" "$HOME/.xsession-errors" "$HOME/.zcompdump" \
+	"$HOME/.zcompdump-mault-5.0.2" "$HOME/.zsh_history"
 
 mkdir "$HOME/Downloads"
+
+# TODO: Remove old docker images/containers
