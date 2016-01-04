@@ -5,7 +5,7 @@ set $alt Mod1
 
 # Orientation and layout
 default_orientation horizontal
-workspace_layout vertical
+workspace_layout default
 
 # Font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -111,6 +111,14 @@ bindsym Control+Shift+l exec i3lock --color=101010
 # Brightness
 bindcode 232 exec --no-startup-id xbacklight - 10
 bindcode 233 exec --no-startup-id xbacklight + 10
+
+# Sound
+bindcode 121 exec --no-startup-id amixer -M -c 1 set Master toggle \
+	&& amixer -M -c 1 set Headphone unmute \
+	&& amixer -M -c 1 set Speaker unmute \
+	&& amixer -M -c 1 set 'Bass Speaker' unmute
+bindcode 122 exec --no-startup-id amixer -M -c 1 set Master 5%-
+bindcode 123 exec --no-startup-id amixer -M -c 1 set Master 5%+
 
 # Colors
 # class                 border  backgr. text    indicator
