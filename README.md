@@ -20,9 +20,10 @@ apt-get install -y \
 	bcmlwl-kernel-source x11-xserver-utils xinit xlm-sensors hddtemp \
 	i3 i3status fonts-droid conky-all \
 	xclip xdotool xbacklight network-manager \
-	xterm git-core silversearcher-ag \
+	xterm git-core silversearcher-ag htop jq \
 	firefox flashplugin-installer \
-	unzip wget curl httpie
+	unzip wget curl httpie \
+	zathura
 
 # Install Docker
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
@@ -58,7 +59,7 @@ dpkg-configure keyboard-configuration
 
 # Firefox
 # > Go to Preferences > Security > Disable 'Remember logins for sites'
-# > Go to about:config and change layout.css.devPixelsPerPx to 1.5
+# > Go to about:config and change layout.css.devPixelsPerPx to 1.3
 
 # Dropbox
 apt-key adv --keyserver pgp.mit.edu --recv-keys 5044912E
@@ -86,4 +87,18 @@ apt-get install -y nodejs
 apt-add-repository ppa:rael-gc/scudcloud
 apt-get update
 apt-get install -y scudcloud
+
+# LastPass
+# > Install LastPass Firefox extension
+
+# VirtualBox
+apt-get install -y virtualbox
+cd ~/Downloads
+FILE=Oracle_VM_VirtualBox_Extension_Pack-4.3.10-93012.vbox-extpack
+curl -O http://download.virtualbox.org/virtualbox/4.3.10/$FILE
+virtualbox $(pwd)/$FILE
+
+# Fix sound (mine was not working)
+apt-get install -y alsa-base pulseaudio
+aptitude --purge reinstall linux-sound-base alsa-base alsa-utils linux-image-`uname -r` linux-ubuntu-modules-`uname -r` libasound2
 ```

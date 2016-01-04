@@ -3,8 +3,9 @@ set $mod Mod4
 set $super $mod
 set $alt Mod1
 
-# Orientation
-default_orientation vertical
+# Orientation and layout
+default_orientation horizontal
+workspace_layout vertical
 
 # Font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -24,7 +25,7 @@ bindsym $mod+s exec --no-startup-id scudcloud
 bindsym $mod+v exec --no-startup-id xdotool click 2
 
 # Delete
-bindsym Shift+BackSpace exec --no-startup-id xdotool keyup Shift && sleep 0.01 && xdotool key Delete
+#bindsym Shift+BackSpace exec --no-startup-id xdotool keyup Shift && sleep 0.01 && xdotool key Delete
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -108,8 +109,8 @@ bindsym Control+Shift+e exec i3-msg exit
 bindsym Control+Shift+l exec i3lock --color=101010
 
 # Brightness
-bindcode 232 exec xbacklight - 10
-bindcode 233 exec xbacklight + 10
+bindcode 232 exec --no-startup-id xbacklight - 10
+bindcode 233 exec --no-startup-id xbacklight + 10
 
 # Colors
 # class                 border  backgr. text    indicator
@@ -147,6 +148,10 @@ bindsym $mod+r mode "resize"
 bar {
 	#status_command i3status
 	status_command $HOME/.dotfiles/i3/conky-i3bar
+
+	# Disable scroll on status bar
+	wheel_up_cmd nop
+	wheel_down_cmd nop
 
 	colors {
 		background #101010

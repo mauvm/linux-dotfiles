@@ -32,6 +32,11 @@ relink "$DIR/vim/config"     "$HOME/.vimrc"
 separator "Installing FZF.."
 "$DIR/fzf/install" --key-bindings --completion
 
-separator "Symlinking X11 start script.."
+separator "Symlinking X11 configs & scripts.."
+sudo rm /etc/X11/xorg.conf.bak 2> /dev/null
+sudo mv /etc/X11/xorg.conf /etc/X11/xorg.conf.bak 2> /dev/null
+sudo cp "$DIR/X11/xorg.conf" /etc/X11/
+sudo rm /etc/X11/xorg.conf.d/50-synaptics.conf 2> /dev/null
+sudo cp "$DIR/X11/50-synaptics.conf" /etc/X11/xorg.conf.d/
 sudo rm /etc/X11/Xsession.d/99x11-common_start 2> /dev/null
 sudo cp "$DIR/X11/start" "/etc/X11/Xsession.d/99x11-common_start"

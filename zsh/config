@@ -10,7 +10,7 @@ export PATH="/sbin:/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
 ZSH_THEME=Soliah
 
 # Plugins
-plugins=(git)
+plugins=(git last-working-dir jump)
 
 # Set up the prompt
 #autoload -Uz promptinit
