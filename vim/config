@@ -11,6 +11,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'airblade/vim-gitgutter'
 
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'bronson/vim-trailing-whitespace'
 
 " End of plugins
 call vundle#end()
@@ -25,8 +26,6 @@ let mapleader = ','
 set number                             " Enable line numbers
 set t_Co=256                           " Enable 256 colors
 set laststatus=2                       " Always show statusbar
-
-" colorscheme monokai
 
 " No Beep
 set noeb vb t_vb=
@@ -123,6 +122,18 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
+
+" Automatically remove trailing spaces
+function TrimWhiteSpace()
+	%s/\s*$//
+	''
+:endfunction
+
+set list listchars=trail:.,extends:>
+autocmd FileWritePre * :call TrimWhiteSpace()
+autocmd FileAppendPre * :call TrimWhiteSpace()
+autocmd FilterWritePre * :call TrimWhiteSpace()
+autocmd BufWritePre * :call TrimWhiteSpace()
 
 " Indent using tabs, preserve indent
 set noet ci pi sts=0 sw=4 ts=4
