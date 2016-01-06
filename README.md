@@ -21,9 +21,8 @@ apt-get install -y \
 	i3 i3status fonts-droid conky-all \
 	xclip xdotool xbacklight network-manager \
 	xterm git-core silversearcher-ag htop jq \
-	firefox flashplugin-installer \
-	unzip wget curl httpie \
-	zathura
+	firefox flashplugin-installer zathura filezilla \
+	unzip wget curl httpie lftp
 
 # Install Docker
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
@@ -102,3 +101,6 @@ virtualbox $(pwd)/$FILE
 apt-get install -y alsa-base pulseaudio
 aptitude --purge reinstall linux-sound-base alsa-base alsa-utils linux-image-`uname -r` linux-ubuntu-modules-`uname -r` libasound2
 ```
+
+# Node tools
+npm install --global grunt-cli bower

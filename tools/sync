@@ -1,0 +1,37 @@
+#!/bin/bash
+
+[ ! -f .env ] && echo 'Missing .env file.' && exit 1
+source .env
+
+[ ! which lftp 2> /dev/null ] && echo 'Command lftp not available.' && exit 1
+
+cmd () {
+	lftp -c "set ftp:list-options -a;
+	set ssl:verify-certificate false
+	open 'ftp://$FTP_USER:$FTP_PASS@$FTP_HOST';
+	cd $FTP_PATH
+	$1
+	"
+}
+
+case "$1" in
+	down) shift
+		echo 'Synching down..'
+		cmd '
+		mirror --use-cache --verbose --allow-chown --allow-suid \
+			--no-umask --parallel=2
+		'
+		;;
+	up) shift
+		echo 'Synching up..'
+		cmd "
+		mirror --reverse --delete --use-cache --verbose --allow-chown \
+			--allow-suid --no-umask --parallel=2 \
+			-x '^\.git/$' -x '^\.gitignore$' -x '^.env$'
+		"
+		;;
+	*)
+		echo "$0 [down|up]"
+		exit 1
+		;;
+esac

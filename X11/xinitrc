@@ -8,6 +8,6 @@ xrdb -merge "$HOME/.dotfiles/xterm/config"
 
 # Disable touchpad while typing
 # https://help.ubuntu.com/community/MacBookPro11-1/Saucy#Touchpad
-syndaemon -d -i 1
+syndaemon -d -i 0.3
 
 exec i3
