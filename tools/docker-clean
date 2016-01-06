@@ -1,3 +1,5 @@
 #!/bin/bash
 
 docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
+
+docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs --no-run-if-empty docker rm

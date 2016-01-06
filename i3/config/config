@@ -22,11 +22,14 @@ bindsym $mod+t exec --no-startup-id telegram
 bindsym $mod+s exec --no-startup-id scudcloud
 bindsym $mod+z exec --no-startup-id filezilla
 
+# Right mouse click to right Alt
+bindcode 108 exec --no-startup-id xdotool click 3
+
 # Paste
 bindsym $mod+v exec --no-startup-id xdotool click 2
 
 # Delete
-#bindsym Shift+BackSpace exec --no-startup-id xdotool keyup Shift && sleep 0.01 && xdotool key Delete
+bindsym Shift+BackSpace exec --no-startup-id sleep 0.15 && xdotool key --clearmodifiers Delete
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -109,11 +112,11 @@ bindsym Control+Shift+e exec i3-msg exit
 # Lock screen
 bindsym Control+Shift+l exec i3lock --color=101010
 
-# Brightness
+# Brightness with F1 & F2
 bindcode 232 exec --no-startup-id xbacklight - 10
 bindcode 233 exec --no-startup-id xbacklight + 10
 
-# Sound
+# Sound with F10-F12
 bindcode 121 exec --no-startup-id amixer -M -c 1 set Master toggle \
 	&& amixer -M -c 1 set Headphone unmute \
 	&& amixer -M -c 1 set Speaker unmute \
