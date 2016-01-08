@@ -57,8 +57,8 @@ dpkg-configure keyboard-configuration
 # TODO: Read about: https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/
 
 # Firefox
-# > Go to Preferences > Security > Disable 'Remember logins for sites'
 # > Go to about:config and change layout.css.devPixelsPerPx to 1.3
+# > Go to Menu > Sign in to Sync and login
 
 # Dropbox
 apt-key adv --keyserver pgp.mit.edu --recv-keys 5044912E
