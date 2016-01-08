@@ -3,12 +3,16 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias t="tree -a -L 3 -I '.git|node_modules'"
 alias d="cd $HOME/Development"
+
 alias v="vim"
 alias sv="sudo vim"
 alias poweroff="sudo shutdown -P now"
 alias top="htop"
 alias sync="$DOTFILES/tools/sync"
+alias paste="xclip -o -selection clipboard 2>/dev/null"
+alias p="paste"
 
+# Git
 g () {
 	if [[ $# -eq 0 ]]; then
 		g s
@@ -18,23 +22,23 @@ g () {
 }
 alias gac="g add -A . && g commit -m"
 
-alias paste="xclip -o -selection clipboard 2>/dev/null"
-alias p="paste"
-
-alias wnetworks="nmcli dev wifi list"
+# Wireless
+alias wls="nmcli dev wifi list"
 wconnect () {
 	echo -n "[wifi] password for $1: "
 	read -s PW
 	echo
 	sudo nmcli dev wifi con "$1" password "$PW"
 }
-alias wreconnect="sudo service network-manager restart"
+alias wrestart="sudo service network-manager restart"
 
+# Keyboard
 swapsuperandalt () {
 	# For keyboards with: ctrl, super, alt
 	setxkbmap -option altwin:swap_alt_win
 }
 
+# Docker
 alias dl="docker-compose logs"
 dr () {
 	# Docker reset

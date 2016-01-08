@@ -40,3 +40,11 @@ sudo rm /etc/X11/xorg.conf.d/50-synaptics.conf 2> /dev/null
 sudo cp "$DIR/X11/50-synaptics.conf" /etc/X11/xorg.conf.d/
 sudo rm /etc/X11/Xsession.d/99x11-common_start 2> /dev/null
 sudo cp "$DIR/X11/start" "/etc/X11/Xsession.d/99x11-common_start"
+sudo rm /etc/X11/Xsession.d/99x11-common_start 2> /dev/null
+sudo cp "$DIR/X11/start" "/etc/X11/Xsession.d/99x11-common_start"
+
+separator "Symlinking Transmission config.."
+sudo rm /var/lib/transmission-daemon/info/settings.json 2> /dev/null
+sudo cp "$DIR/transmission/settings.json" /var/lib/transmission-daemon/info/settings.json
+sudo chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
+sudo chmod 755 /var/lib/transmission-daemon/info/settings.json

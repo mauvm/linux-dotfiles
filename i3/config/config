@@ -29,7 +29,7 @@ bindcode 108 exec --no-startup-id xdotool click 3
 bindsym $mod+v exec --no-startup-id xdotool click 2
 
 # Delete
-bindsym Shift+BackSpace exec --no-startup-id sleep 0.15 && xdotool key --clearmodifiers Delete
+#bindsym Shift+BackSpace exec --no-startup-id sleep 0.15 && xdotool key --clearmodifiers Delete
 
 # Kill focused window
 bindsym $mod+Shift+q kill
