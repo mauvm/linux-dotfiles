@@ -100,7 +100,6 @@ virtualbox $(pwd)/$FILE
 # Fix sound (mine was not working)
 apt-get install -y alsa-base pulseaudio
 aptitude --purge reinstall linux-sound-base alsa-base alsa-utils linux-image-`uname -r` linux-ubuntu-modules-`uname -r` libasound2
-```
 
 # Node tools
 npm install --global grunt-cli bower
@@ -114,3 +113,4 @@ sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt
 apt-get update
 apt-get install google-chrome-stable
 # > Add Google Cast extension: https://chrome.google.com/webstore/detail/google-cast/boadgeojelhgndaghljhdicfkmllpafd/
+```
