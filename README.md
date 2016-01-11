@@ -48,8 +48,12 @@ git config --global user.name "Maurits van Mastrigt"
 
 # Fix typing quotes and special characters
 dpkg-configure keyboard-configuration
-# > Select US (Macintosh)
-# > Select RightAltr as alt and compose keys
+# > Select Generic 105-key (Intl) PC
+# > Select English (US)
+# > Select English (Macintosh)
+# > Select Left Alt
+# > Select No compose key
+# > Select No
 
 # Add wireless
 # > https://docs.fedoraproject.org/en-US/Fedora/20/html/Networking_Guide/sec-Connecting_to_a_Network_Using_nmcli.html

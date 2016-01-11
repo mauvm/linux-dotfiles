@@ -35,8 +35,12 @@ alias wrestart="sudo service network-manager restart"
 
 # Keyboard
 swapsuperandalt () {
+	# Toggle
+	local FLAGS=''
+	setxkbmap -query | grep -q 'altwin:swap_alt_win' || FLAGS=('-option' 'altwin:swap_alt_win')
+
 	# For keyboards with: ctrl, super, alt
-	setxkbmap -option altwin:swap_alt_win
+	setxkbmap -layout us -variant mac -option '' -option caps:escape ${FLAGS[@]}
 }
 
 # Docker
