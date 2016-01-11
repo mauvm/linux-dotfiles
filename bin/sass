@@ -1,0 +1,6 @@
+#!/bin/bash
+
+DIR=$(basename "$(pwd)")
+cd ..
+docker run --rm -it -v $(pwd):/app --workdir="/app/$DIR" \
+	yajo/sass sass $@

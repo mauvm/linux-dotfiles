@@ -48,3 +48,17 @@ sudo rm /var/lib/transmission-daemon/info/settings.json 2> /dev/null
 sudo cp "$DIR/transmission/settings.json" /var/lib/transmission-daemon/info/settings.json
 sudo chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
 sudo chmod 755 /var/lib/transmission-daemon/info/settings.json
+
+separator "Symlinking bin/ into /usr/local/bin.."
+for FILE in "$DIR"/bin/*; do
+	BIN_FILE=/usr/local/bin/`basename $FILE`
+	if [ -L "$BIN_FILE" ]; then
+		# Remove existing symlink
+		unlink "$BIN_FILE" 2> /dev/null
+	fi
+	if [ ! -f "$BIN_FILE" ]; then
+		sudo ln -s "$FILE" "$BIN_FILE"
+	else
+		echo "$BIN_FILE already exists, skipping."
+	fi
+done
