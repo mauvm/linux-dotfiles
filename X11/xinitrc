@@ -1,7 +1,8 @@
 # This file will be sourced by /etc/X11/Xsession.d/99x11-common_start
 
-# Map Caps Lock to Escape
-setxkbmap -option caps:escape &
+# Set keyboard layout and options
+setxkbmap -layout us -variant mac -option '' \
+	-option caps:escape # Map caps lock to escape
 
 # XTerm config
 xrdb -merge "$HOME/.dotfiles/xterm/config"
