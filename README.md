@@ -18,7 +18,7 @@ apt-get --allow-unauthenticated install sur5r-keyring
 apt-get update
 apt-get install -y \
 	bcmlwl-kernel-source x11-xserver-utils xinit xlm-sensors hddtemp \
-	i3 i3status fonts-droid conky-all \
+	i3 i3status fonts-droid conky-all redshift \
 	xclip xdotool xbacklight network-manager \
 	xterm git-core silversearcher-ag htop jq \
 	firefox flashplugin-installer zathura filezilla transmission-daemon vlc \

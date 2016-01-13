@@ -11,4 +11,7 @@ xrdb -merge "$HOME/.dotfiles/xterm/config"
 # https://help.ubuntu.com/community/MacBookPro11-1/Saucy#Touchpad
 syndaemon -d -i 0.3
 
+# Redshift
+redshift -c $DOTFILES/redshift/config &
+
 exec i3
