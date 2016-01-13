@@ -117,4 +117,16 @@ sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt
 apt-get update
 apt-get install google-chrome-stable
 # > Add Google Cast extension: https://chrome.google.com/webstore/detail/google-cast/boadgeojelhgndaghljhdicfkmllpafd/
+
+# VPN
+apt-get install -y openvpn
+
+# LastPass CLI
+apt-get install -y openssl libcurl4-openssl-dev libxml2 libssl-dev libxml2-dev pinentry-curses xcli
+cd /tmp/
+git clone https://github.com/lastpass/lastpass-cli
+cd lastpass-cli/
+make
+make install
+lpass login <username>
 ```

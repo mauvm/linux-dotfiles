@@ -1,0 +1,25 @@
+#!/bin/bash
+
+pick () {
+	OPTIONS=$(lpass show --name -G "$1" | awk '{ if(NR>1) { print }}' | sed 's/ \[id: [0-9]*\]//g')
+	PS3='Search or pick number: '
+	IFS=$'\n'
+	select NAME in ${OPTIONS[@]}
+	do
+		if [ -n "$NAME" ]; then
+			PW=$(lpass show --password "$NAME" 2>/dev/null)
+			[ -n "$PW" ] \
+				|| (echo "Couldn't retrieve password." && exit 1)
+			echo -n "$PW" | xclip -i -selection clipboard \
+				|| (echo "Couldn't put password in clipboard." && exit 1)
+			echo "Copied to clipboard."
+			exit 0
+		else
+			pick "$REPLY"
+		fi
+	done
+}
+
+echo -n "Search: "
+read NAME
+pick "$NAME"
