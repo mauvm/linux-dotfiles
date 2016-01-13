@@ -16,16 +16,16 @@ font pango:DroidSansMono 14
 floating_modifier $mod
 
 # Applications
-bindsym $mod+Return exec --no-startup-id xterm
-bindsym $mod+b exec --no-startup-id firefox
-bindsym $mod+t exec --no-startup-id telegram
-bindsym $mod+s exec --no-startup-id scudcloud
+bindsym $mod+Return exec --no-startup-id xterm &
+bindsym $mod+b exec --no-startup-id firefox &
+bindsym $mod+t exec --no-startup-id telegram &
+bindsym $mod+s exec --no-startup-id scudcloud &
 
 # Right mouse click to right Alt
 bindcode 108 exec --no-startup-id xdotool click 3
 
 # Paste
-bindsym $mod+v exec --no-startup-id sleep 0.1 && xdotool key Shift+Insert
+bindsym $mod+v exec --no-startup-id sleep 0.3 && xdotool key Shift+Insert
 
 # Delete
 # In XTerm use Ctrl+d
@@ -36,7 +36,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id dmenu_run -fn 'DroidSansMono:bold:pixelsize=18'
 
 # Change workspace
 bindsym $mod+h workspace prev
