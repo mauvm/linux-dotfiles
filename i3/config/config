@@ -25,9 +25,10 @@ bindsym $mod+s exec --no-startup-id scudcloud
 bindcode 108 exec --no-startup-id xdotool click 3
 
 # Paste
-bindsym $mod+v exec --no-startup-id xdotool click 2
+bindsym $mod+v exec --no-startup-id sleep 0.1 && xdotool key Shift+Insert
 
 # Delete
+# In XTerm use Ctrl+d
 #bindsym Shift+BackSpace exec --no-startup-id sleep 0.15 && xdotool key --clearmodifiers Delete
 
 # Kill focused window
