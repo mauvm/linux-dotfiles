@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker run --rm -it -p "0.0.0.0:${PHP_PORT:-3000}:3000" -v "$(pwd):/data" --workdir=/data php php "$@"
+PHP_PORT=${PHP_PORT:-3000}
+
+docker run --rm -it -p "0.0.0.0:$PHP_PORT:$PHP_PORT" -v "$(pwd):/data" --workdir=/data php php "$@"

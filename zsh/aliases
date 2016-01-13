@@ -68,7 +68,7 @@ alias sqlbuddy="docker run --rm -it -p 127.0.0.1:8010:80 \
 phpserv () {
 	PHP_PORT=${1:-3000}
 	echo "Starting server on localhost:$PHP_PORT.."
-	php -S 0.0.0.0:3000
+	PHP_PORT=$PHP_PORT php -S 0.0.0.0:$PHP_PORT
 }
 mysqlserv () {
 	STARTUP_SQL=
@@ -83,4 +83,10 @@ mysqlserv () {
 	cd ~/Dropbox/1Password/1Password.agilekeychain/
 	phpserv 4000
 	firefox http://localhost:4000/1Password.html
+}
+adbserv () {
+	docker start adbd || docker run -d --privileged -v /dev/bus/usb:/dev/bus/usb --name adbd sorccu/adb
+}
+adb () {
+	docker run --rm -ti --privileged -v $(pwd):/data --workdir=/data --net container:adbd sorccu/adb adb $@
 }

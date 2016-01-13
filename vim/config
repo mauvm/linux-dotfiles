@@ -80,6 +80,9 @@ let g:ctrlp_custom_ignore = {
 	\'file': '\v(\.pyc|tags)$'
 	\ }
 
+" Show hidden files and folders
+let g:ctrlp_show_hidden = 1
+
 " Disable arrow keys
 inoremap <Up> <NOP>
 inoremap <Down> <NOP>
