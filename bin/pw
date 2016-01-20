@@ -1,7 +1,13 @@
 #!/bin/bash
 
+# TODO: Create copyPwForName ish method
+# TODO: Automatically pick first if one option is available
+
 pick () {
-	OPTIONS=$(lpass show --name -G "$1" | awk '{ if(NR>1) { print }}' | sed 's/ \[id: [0-9]*\]//g')
+	OPTIONS=$(lpass show --name -G "$1")
+	if [ "$(echo "$OPTIONS" | wc -l)" != "1" ]; then
+		OPTIONS=$(echo "$OPTIONS" | awk '{ if(NR>1) { print }}' | sed 's/ \[id: [0-9]*\]//g')
+	fi
 	PS3='Search or pick number: '
 	IFS=$'\n'
 	select NAME in ${OPTIONS[@]}

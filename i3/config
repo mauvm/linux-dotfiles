@@ -16,10 +16,10 @@ font pango:DroidSansMono 14
 floating_modifier $mod
 
 # Applications
-bindsym $mod+Return exec --no-startup-id xterm &
-bindsym $mod+b exec --no-startup-id firefox &
-bindsym $mod+t exec --no-startup-id telegram &
-bindsym $mod+s exec --no-startup-id scudcloud &
+bindsym $mod+Return exec --no-startup-id xterm
+bindsym $mod+b      exec --no-startup-id firefox
+bindsym $mod+t      exec --no-startup-id telegram
+bindsym $mod+s      exec --no-startup-id scudcloud
 
 # Right mouse click to right Alt
 bindcode 108 exec --no-startup-id xdotool click 3

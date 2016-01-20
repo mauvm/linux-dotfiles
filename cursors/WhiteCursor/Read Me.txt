@@ -1,0 +1,7 @@
+How to change the cursor:
+
+1- Right click on the file “Install.inf” and select “Install”
+2- Right click on the desktop and select “Personalize”
+3- Click on “Change mouse pointers” and then go to the “Pointers” tab
+4- Select the “White” scheme in the dropdown and uncheck the box “Enable pointer shadow”
+5- Press “OK” and enjoy :)

@@ -13,6 +13,7 @@ alias paste="xclip -o -selection clipboard 2>/dev/null"
 alias p="paste"
 alias copy="xclip -i -selection clipboard 2>/dev/null"
 alias search="ag -iQ"
+alias screenshot="echo 'Making screenshot in 4 seconds..'; scrot -b -d 4 '%Y-%m-%d_%H:%M:%S.png' -e 'mv $f ~/Downloads/'"
 
 # Git
 g () {
@@ -45,9 +46,10 @@ swapsuperandalt () {
 }
 
 # Docker
-alias dl="docker-compose logs"
-dr () {
-	# Docker reset
+alias dcp="docker-compose ps"
+alias dcl="docker-compose logs"
+dcr () {
+	# Docker Compose reset
 	docker-compose build $1
 	docker-compose kill $1
 	docker-compose rm -f $1
@@ -55,11 +57,7 @@ dr () {
 }
 de () {
 	# Docker exec
-	if [ $# -eq 1 ]; then
-		docker exec -it "$1" bash
-	else
-		docker exec -it $*
-	fi
+	[ $# -eq 1 ] && docker exec -it "$1" bash || docker exec -it $@
 }
 alias sqlbuddy="docker run --rm -it -p 127.0.0.1:8010:80 \
 	-e SERVER_NAME=localhost -e SERVER_ADMIN=maurits@nerdieworks.nl \

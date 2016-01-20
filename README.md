@@ -22,7 +22,7 @@ apt-get install -y \
 	xclip xdotool xbacklight network-manager \
 	xterm git-core silversearcher-ag htop jq \
 	firefox flashplugin-installer zathura filezilla transmission-daemon vlc \
-	zip unzip wget curl httpie lftp
+	zip unzip wget curl httpie lftp scrot
 
 # Install Docker
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
@@ -120,6 +120,8 @@ apt-get install google-chrome-stable
 
 # VPN
 apt-get install -y openvpn
+# > Follow https://www.gaggl.com/2013/04/openvpn-forward-all-client-traffic-through-tunnel-using-ufw/
+# > Also add wlan0 line in /etc/ufw/before.rules
 
 # LastPass CLI
 apt-get install -y openssl libcurl4-openssl-dev libxml2 libssl-dev libxml2-dev pinentry-curses xcli
@@ -129,4 +131,14 @@ cd lastpass-cli/
 make
 make install
 lpass login <username>
+
+# Tor browser
+add-apt-repository ppa:webupd8team/tor-browser
+apt-get update
+apt-get install -y tor-browser
+
+# Keybase CLI
+curl -O https://dist.keybase.io/linux/deb/keybase-latest-amd64.deb
+dpkg -i keybase-latest-amd64.deb
+rm keybase-latest-amd64.deb
 ```

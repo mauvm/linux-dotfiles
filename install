@@ -19,6 +19,19 @@ relink () {
 	ln -s "$1" "$2"
 }
 
+srelink () {
+	if [ -L "$2" ]; then
+		# Remove existing symlink
+		unlink "$2" 2> /dev/null
+	fi
+	if [ ! -f "$2" ]; then
+		sudo ln -s "$1" "$2"
+	else
+		echo "$2 already exists, skipping."
+	fi
+
+}
+
 separator "Symlinking files in home directory.."
 relink "$DIR/X11/xinitrc"    "$HOME/.xinitrc"
 relink "$DIR/xterm/config"   "$HOME/.Xdefaults"
@@ -54,14 +67,10 @@ sudo chmod 755 /var/lib/transmission-daemon/info/settings.json
 
 separator "Symlinking bin/ into /usr/local/bin.."
 for FILE in "$DIR"/bin/*; do
-	BIN_FILE=/usr/local/bin/`basename $FILE`
-	if [ -L "$BIN_FILE" ]; then
-		# Remove existing symlink
-		unlink "$BIN_FILE" 2> /dev/null
-	fi
-	if [ ! -f "$BIN_FILE" ]; then
-		sudo ln -s "$FILE" "$BIN_FILE"
-	else
-		echo "$BIN_FILE already exists, skipping."
-	fi
+	srelink "$FILE" /usr/local/bin/`basename $FILE`
 done
+
+separator "Symlinking cursor pack.."
+sudo mkdir /usr/share/cursors 2>/dev/null
+sudo unlink /usr/share/cursors/WhiteCursor
+srelink "$DIR/cursors/WhiteCursor/" "/usr/share/cursors/WhiteCursor"
