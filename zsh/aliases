@@ -12,7 +12,7 @@ alias sync="$DOTFILES/tools/sync"
 alias paste="xclip -o -selection clipboard 2>/dev/null"
 alias p="paste"
 alias copy="xclip -i -selection clipboard 2>/dev/null"
-alias search="ag -iQ"
+alias search="ag -iQ --hidden"
 alias screenshot="echo 'Making screenshot in 4 seconds..'; scrot -b -d 4 '%Y-%m-%d_%H:%M:%S.png' -e 'mv $f ~/Downloads/'"
 
 # Git
@@ -79,7 +79,8 @@ mysqlserv () {
 }
 1pw () {
 	cd ~/Dropbox/1Password/1Password.agilekeychain/
-	phpserv 4000
+	phpserv 4000 &
+	sleep 1
 	firefox http://localhost:4000/1Password.html
 }
 adbserv () {

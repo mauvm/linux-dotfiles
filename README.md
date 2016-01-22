@@ -141,4 +141,12 @@ apt-get install -y tor-browser
 curl -O https://dist.keybase.io/linux/deb/keybase-latest-amd64.deb
 dpkg -i keybase-latest-amd64.deb
 rm keybase-latest-amd64.deb
+
+# Fix slow Firefox
+# > Firefox > Preferences > Advanced > Network > Check 'Override automatic cache management'
+#   and limit cache to 1024mb
+# > Add 'APT::Cache-Limit "100000000";' to /etc/apt/apt.conf.d/70debconf
+apt-get clean
+apt-get update --fix-missing
+# > Restart Firefox
 ```

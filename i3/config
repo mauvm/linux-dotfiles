@@ -36,7 +36,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec --no-startup-id dmenu_run -fn 'DroidSansMono:bold:pixelsize=18'
+bindsym $mod+d exec --no-startup-id dmenu_run -fn 'DroidSansMono:normal:pixelsize=21'
 
 # Change workspace
 bindsym $mod+h workspace prev
