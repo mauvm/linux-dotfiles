@@ -1,7 +1,7 @@
 XTerm*selectToClipboard: true
 ! XTerm*faceName: Bitstream Vera Serif Mono
 ! XTerm*faceSize: 11
-XTerm*faceName: Droid Sans Mono:size=14:antialias=false
+XTerm*faceName: Droid Sans Mono:size=18:antialias=false
 XTerm*vt100*geometry: 80x60
 XTerm*saveLines: 16384
 XTerm*loginShell: true

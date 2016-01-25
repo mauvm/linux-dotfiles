@@ -2,7 +2,7 @@
 	s = status -sb
 	ps = push
 	pl = pull
-	a = add -A .
+	a = add -A
 	c = commit -m
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr, %cn)%C(bold blue)'
 	d = diff

@@ -3,6 +3,10 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias t="tree -a -L 3 -I '.git|node_modules'"
 alias d="cd $HOME/Development"
+cdl () {
+	cd $@
+	l
+}
 
 alias v="vim"
 alias sv="sudo vim"
@@ -79,13 +83,27 @@ mysqlserv () {
 }
 1pw () {
 	cd ~/Dropbox/1Password/1Password.agilekeychain/
-	phpserv 4000 &
-	sleep 1
 	firefox http://localhost:4000/1Password.html
+	phpserv 4000
 }
 adbserv () {
 	docker start adbd || docker run -d --privileged -v /dev/bus/usb:/dev/bus/usb --name adbd sorccu/adb
 }
 adb () {
 	docker run --rm -ti --privileged -v $(pwd):/data --workdir=/data --net container:adbd sorccu/adb adb $@
+}
+
+# Transmission
+alias tls="transmission-remote -n 'transmission:transmission' -l"
+alias tadd="transmission-remote -n 'transmission:transmission' -a"
+trm () {
+	transmission-remote -n 'transmission:transmission' -t $@ --remove-and-delete
+}
+
+# Calculator
+# Source: http://askubuntu.com/a/379282/71853
+= () {
+    calc="${@//p/+}"
+    calc="${calc//x/*}"
+    echo "$(($calc))"
 }

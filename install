@@ -60,10 +60,8 @@ sudo rm /etc/X11/Xsession.d/99x11-common_start 2> /dev/null
 sudo cp "$DIR/X11/start" "/etc/X11/Xsession.d/99x11-common_start"
 
 separator "Symlinking Transmission config.."
-sudo rm /var/lib/transmission-daemon/info/settings.json 2> /dev/null
-sudo cp "$DIR/transmission/settings.json" /var/lib/transmission-daemon/info/settings.json
-sudo chown debian-transmission:debian-transmission /var/lib/transmission-daemon/info/settings.json
-sudo chmod 755 /var/lib/transmission-daemon/info/settings.json
+sudo rm /etc/transmission-daemon/settings.json 2> /dev/null
+sudo cp "$DIR/transmission/settings.json" /etc/transmission-daemon/settings.json
 
 separator "Symlinking bin/ into /usr/local/bin.."
 for FILE in "$DIR"/bin/*; do
