@@ -143,6 +143,10 @@ assign [class="Firefox"] 2
 assign [class="telegram"] 3
 assign [class="Scudcloud"] 4
 
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
 # Resize window (you can also use the mouse for that)
 mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt

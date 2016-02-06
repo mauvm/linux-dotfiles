@@ -1,10 +1,9 @@
 #!/bin/bash
 
 rm -rf "$HOME/.adobe/" "$HOME/.aptitude/" "$HOME/.babel.json" "$HOME/.bash_history" \
-	"$HOME/.byobu/" "$HOME/.cache/" "$HOME/.dbus/" "$HOME/Downloads/" "$HOME/.gconf/" \
+	"$HOME/.byobu/" "$HOME/.cache/" "$HOME/.dbus/" "$HOME/.gconf/" \
 	"$HOME/.gnome2/" "$HOME/.gnome2_private/" "$HOME/.lesshst" "$HOME/.macromedia/" \
-	"$HOME/.node_repl_history" "$HOME/.npm/" $HOME/.v8flags* "$HOME/.xsession-errors" \
-	$HOME/.zcompdump* "$HOME/.zsh_history"
+	"$HOME/.node_repl_history" "$HOME/.npm/" "$HOME/".v8flags* "$HOME/.xsession-errors" \
+	"$HOME/".zcompdump* "$HOME/.zsh_history"
 
 mkdir "$HOME/.cache"
-mkdir "$HOME/Downloads"

@@ -26,6 +26,10 @@ pick () {
 	done
 }
 
-echo -n "Search: "
-read NAME
-pick "$NAME"
+if [ -z "$1" ]; then
+	echo -n "Search: "
+	read NAME
+	pick "$NAME"
+else
+	pick "$1"
+fi

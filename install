@@ -59,10 +59,6 @@ sudo cp "$DIR/X11/start" "/etc/X11/Xsession.d/99x11-common_start"
 sudo rm /etc/X11/Xsession.d/99x11-common_start 2> /dev/null
 sudo cp "$DIR/X11/start" "/etc/X11/Xsession.d/99x11-common_start"
 
-separator "Symlinking Transmission config.."
-sudo rm /etc/transmission-daemon/settings.json 2> /dev/null
-sudo cp "$DIR/transmission/settings.json" /etc/transmission-daemon/settings.json
-
 separator "Symlinking bin/ into /usr/local/bin.."
 for FILE in "$DIR"/bin/*; do
 	srelink "$FILE" /usr/local/bin/`basename $FILE`

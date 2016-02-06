@@ -20,7 +20,7 @@ apt-get install -y \
 	bcmlwl-kernel-source x11-xserver-utils xinit xlm-sensors hddtemp \
 	i3 i3status fonts-droid conky-all redshift \
 	xclip xdotool xbacklight network-manager \
-	xterm git-core silversearcher-ag htop jq \
+	xterm git-core silversearcher-ag htop jq g++ \
 	firefox flashplugin-installer zathura filezilla transmission-daemon vlc \
 	zip unzip wget curl httpie lftp scrot nmap
 
@@ -149,4 +149,21 @@ rm keybase-latest-amd64.deb
 apt-get clean
 apt-get update --fix-missing
 # > Restart Firefox
+
+# Better notification lib
+apt-get remove dunst
+apt-get install -y notify-osd notify-osd-icons libnotify-bin
+
+# Fan control
+# > Add line "coretemp" to /etc/modules
+# > Add line "applesmc" to /etc/modules
+cd /usr/local/src
+sudo git clone https://github.com/dgraziotin/Fan-Control-Daemon.git
+sudo chmod -R 755 /usr/local/src/Fan-Control-Daemon
+sudo chown -R $USER:$USER /usr/local/src/Fan-Control-Daemon
+cd Fan-Control-Daemon
+make
+sudo make install
+sudo cp mbpfan.upstart /etc/init/mbpfan.conf
+sudo start mbpfan
 ```
