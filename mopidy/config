@@ -1,0 +1,28 @@
+[core]
+cache_dir = /var/cache/mopidy
+config_dir = /etc/mopidy
+data_dir = /var/lib/mopidy
+
+[logging]
+config_file = /etc/mopidy/logging.conf
+debug_file = /var/log/mopidy/mopidy-debug.log
+
+[local]
+data_dir = /var/lib/mopidy/local
+media_dir = /var/lib/mopidy/media
+
+[m3u]
+playlists_dir = /var/lib/mopidy/playlists
+
+[mpd]
+hostname = ::
+
+[audio]
+output = pulsesink server=127.0.0.1
+
+[soundcloud]
+auth_token = 1-35204-48301998-3d1ac25936f5d97
+
+[spotify]
+username = 1157594040
+password = DNapvQwK1tL0a7PtImaQuHKDePJPPi

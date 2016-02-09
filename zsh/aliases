@@ -18,6 +18,7 @@ alias p="paste"
 alias copy="xclip -i -selection clipboard 2>/dev/null"
 alias s="ag -iQ --hidden"
 alias screenshot="echo 'Making screenshot in 4 seconds..'; scrot -b -d 4 '%Y-%m-%d_%H:%M:%S.png' -e 'mv $f ~/Downloads/'"
+alias music="ncmpcpp"
 
 # Git
 g () {

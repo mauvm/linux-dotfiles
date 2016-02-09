@@ -166,4 +166,12 @@ make
 sudo make install
 sudo cp mbpfan.upstart /etc/init/mbpfan.conf
 sudo start mbpfan
+
+# Mopidy
+wget -q -O - https://apt.mopidy.com/mopidy.gpg | apt-key add -
+wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/jessie.list
+apt-get update
+apt-get install -y mopidy mopidy-alsamixer mopidy-soundcloud mopidy-spotify ncmpcpp
+vim /etc/init.d/mopidy
+# > CONFIG_FILES="/usr/share/mopidy/conf.d:/etc/mopidy/mopidy.conf:/home/mauvm/.config/mopidy/mopidy.conf"
 ```
