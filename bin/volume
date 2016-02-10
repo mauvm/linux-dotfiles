@@ -1,0 +1,38 @@
+#!/bin/bash
+
+FLAGS="-M -c 1"
+
+if [ -z "$1" ]; then
+	amixer $FLAGS sget Master \
+		| grep 'Mono:' | cut -c21-26 \
+		| sed 's/[^0-9|%]//g'
+	exit
+fi
+
+# Enable pattern for setting volume
+shopt -s extglob
+
+case "$1" in
+	toggle)
+		amixer $FLAGS set Master toggle \
+			&& amixer $FLAGS set Headphone unmute \
+			&& amixer $FLAGS set Speaker unmute \
+			&& amixer $FLAGS set 'Bass Speaker' unmute
+	;;
+	muted)
+		amixer $FLAGS sget Master | grep -q 'Mono:.*off'
+	;;
+	+([0-9]))
+		amixer $FLAGS set Master ${1:-50}%
+	;;
+	-)
+		amixer $FLAGS set Master 5%-
+	;;
+	+)
+		amixer $FLAGS set Master 5%+
+	;;
+	*)
+		echo "Unknown option"
+		exit 1
+	;;
+esac

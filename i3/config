@@ -114,12 +114,14 @@ bindcode 232 exec --no-startup-id xbacklight - 10 -time 0
 bindcode 233 exec --no-startup-id xbacklight + 10 -time 0
 
 # Sound with F10-F12
-bindcode 121 exec --no-startup-id amixer -M -c 1 set Master toggle \
-	&& amixer -M -c 1 set Headphone unmute \
-	&& amixer -M -c 1 set Speaker unmute \
-	&& amixer -M -c 1 set 'Bass Speaker' unmute
-bindcode 122 exec --no-startup-id amixer -M -c 1 set Master 5%-
-bindcode 123 exec --no-startup-id amixer -M -c 1 set Master 5%+
+bindcode 121 exec --no-startup-id volume toggle
+bindcode 122 exec --no-startup-id volume -
+bindcode 123 exec --no-startup-id volume +
+
+# > Also bind normal function buttons
+bindcode 76 exec --no-startup-id volume toggle
+bindcode 95 exec --no-startup-id volume -
+bindcode 96 exec --no-startup-id volume +
 
 # Colors
 # class                 border  backgr. text    indicator
