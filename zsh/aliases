@@ -18,7 +18,12 @@ alias p="paste"
 alias copy="xclip -i -selection clipboard 2>/dev/null"
 alias s="ag -iQ --hidden"
 alias screenshot="echo 'Making screenshot in 4 seconds..'; scrot -b -d 4 '%Y-%m-%d_%H:%M:%S.png' -e 'mv $f ~/Downloads/'"
-alias music="ncmpcpp"
+music () {
+	if ! sudo service mopidy status > /dev/null; then
+		sudo service mopidy start
+	fi
+	ncmpcpp
+}
 
 # Git
 g () {
@@ -64,13 +69,34 @@ de () {
 	# Docker exec
 	[ $# -eq 1 ] && docker exec -it "$1" bash || docker exec -it $@
 }
+dsa () {
+	docker stop $(docker ps -q)
+}
 
 php-serve () {
 	PHP_PORT=${1:-3000}
 	echo "Starting server on localhost:$PHP_PORT.."
 	PHP_PORT=$PHP_PORT php -S 0.0.0.0:$PHP_PORT
 }
-alias mysql-admin="docker run -d --name adminer clue/adminer"
+mysql-admin () {
+	local name=mysql-admin
+	if ! $(docker ps --format "{{.Names}}" | grep -qE "^$name\$"); then
+		docker run -d --name "$name" clue/adminer
+	else
+		docker start "$name"
+	fi
+
+	# Update IP in hosts file
+	local ip=$(docker inspect --format '{{.NetworkSettings.IPAddress}}' "$name")
+	local host="$name.local"
+	local updated="$ip      $host"
+
+	if $(cat /etc/hosts | grep -q 'mysql-admin.local'); then
+		sudo sed -i "s/^[0-9\. \t]*$host\$/$updated/" /etc/hosts
+	else
+		echo "$updated" | sudo tee /etc/hosts > /dev/null
+	fi
+}
 1pw () {
 	cd ~/Dropbox/1Password/1Password.agilekeychain/
 	firefox http://localhost:4000/1Password.html
