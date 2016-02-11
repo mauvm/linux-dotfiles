@@ -6,6 +6,7 @@
 	c = commit -m
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr, %cn)%C(bold blue)'
 	d = diff
+	dc = diff --cached
 [user]
 	email = maurits@nerdieworks.nl
 	name = Maurits van Mastrigt

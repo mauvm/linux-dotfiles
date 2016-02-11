@@ -22,6 +22,7 @@ music () {
 	if ! sudo service mopidy status > /dev/null; then
 		sudo service mopidy start
 	fi
+	sleep 2
 	ncmpcpp
 }
 
