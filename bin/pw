@@ -2,6 +2,12 @@
 
 # TODO: Create copyPwForName ish method
 
+prompt () {
+	echo -n "Search: "
+	read NAME
+	search "$NAME"
+}
+
 pick () {
 	# Copy to clipboard
 	PW=$(lpass show --password "$1" 2>/dev/null)
@@ -16,7 +22,10 @@ pick () {
 search () {
 	# Determine results
 	OPTIONS=$(lpass show --name -G "$1")
-	IFS=$'\n'
+	if [ "$?" != "0" ]; then
+		prompt
+		return
+	fi
 	if [ "$(echo "$OPTIONS" | wc -l)" != "1" ]; then
 		OPTIONS=$(echo "$OPTIONS" | awk '{ if(NR>1) { print }}' | sed 's/ \[id: [0-9]*\]//g')
 	fi
@@ -28,6 +37,7 @@ search () {
 
 	# Pick one or do another search
 	PS3='Search or pick number: '
+	IFS=$'\n'
 	select NAME in ${OPTIONS[@]}
 	do
 		if [ -n "$NAME" ]; then
@@ -42,7 +52,5 @@ search () {
 if [ -n "$1" ]; then
 	search "$1"
 else
-	echo -n "Search: "
-	read NAME
-	search "$NAME"
+	prompt
 fi
