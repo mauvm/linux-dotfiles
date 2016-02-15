@@ -113,6 +113,10 @@ bindsym Control+Shift+l exec i3lock --color=101010
 bindcode 232 exec --no-startup-id xbacklight - 10 -time 0
 bindcode 233 exec --no-startup-id xbacklight + 10 -time 0
 
+# Keyboard backlight with F5 & F6
+bindcode 237 exec --no-startup-id expr $(cat /sys/class/leds/smc::kbd_backlight/brightness) - 51 | tee /sys/class/leds/smc::kbd_backlight/brightness
+bindcode 238 exec --no-startup-id expr $(cat /sys/class/leds/smc::kbd_backlight/brightness) + 51 | tee /sys/class/leds/smc::kbd_backlight/brightness
+
 # Music with F7-F9
 bindcode 173 exec --no-startup-id ncmpcpp prev
 bindcode 172 exec --no-startup-id ncmpcpp toggle
