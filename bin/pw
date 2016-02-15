@@ -1,35 +1,48 @@
 #!/bin/bash
 
 # TODO: Create copyPwForName ish method
-# TODO: Automatically pick first if one option is available
 
 pick () {
+	# Copy to clipboard
+	PW=$(lpass show --password "$1" 2>/dev/null)
+	[ -n "$PW" ] \
+		|| (echo "Couldn't retrieve password." && exit 1)
+	echo -n "$PW" | xclip -i -selection clipboard \
+		|| (echo "Couldn't put password in clipboard." && exit 1)
+	echo "Copied to clipboard."
+	exit 0
+}
+
+search () {
+	# Determine results
 	OPTIONS=$(lpass show --name -G "$1")
+	IFS=$'\n'
 	if [ "$(echo "$OPTIONS" | wc -l)" != "1" ]; then
 		OPTIONS=$(echo "$OPTIONS" | awk '{ if(NR>1) { print }}' | sed 's/ \[id: [0-9]*\]//g')
 	fi
+
+	# Just one result
+	if [ "$(echo -e "$OPTIONS" | wc -l)" = "1" ]; then
+		pick "${OPTIONS[0]}"
+	fi
+
+	# Pick one or do another search
 	PS3='Search or pick number: '
-	IFS=$'\n'
 	select NAME in ${OPTIONS[@]}
 	do
 		if [ -n "$NAME" ]; then
-			PW=$(lpass show --password "$NAME" 2>/dev/null)
-			[ -n "$PW" ] \
-				|| (echo "Couldn't retrieve password." && exit 1)
-			echo -n "$PW" | xclip -i -selection clipboard \
-				|| (echo "Couldn't put password in clipboard." && exit 1)
-			echo "Copied to clipboard."
-			exit 0
+			pick "$NAME"
 		else
-			pick "$REPLY"
+			search "$REPLY"
 		fi
 	done
 }
 
-if [ -z "$1" ]; then
+# Search by first argument or prompt
+if [ -n "$1" ]; then
+	search "$1"
+else
 	echo -n "Search: "
 	read NAME
-	pick "$NAME"
-else
-	pick "$1"
+	search "$NAME"
 fi
