@@ -17,9 +17,9 @@ alias paste="xclip -o -selection clipboard 2>/dev/null"
 alias p="paste"
 alias copy="xclip -i -selection clipboard 2>/dev/null"
 alias s="ag -iQ --hidden"
-alias screenshot="echo 'Making screenshot in 4 seconds..'; scrot -b -d 4 '%Y-%m-%d_%H:%M:%S.png' -e 'mv $f ~/Downloads/'"
+alias screenshot="echo 'Making screenshot in 4 seconds..'; scrot -b -d 4 '%Y-%m-%d_%H:%M:%S.png' -e 'mv \$f ~/Downloads/'"
 music () {
-	if ! sudo service mopidy status > /dev/null; then
+	if [[ "$(ps aux | grep mopidy | wc -l)" -gt 1 ]]; then
 		sudo service mopidy start
 	fi
 	sleep 2

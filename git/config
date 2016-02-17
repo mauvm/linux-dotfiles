@@ -12,3 +12,6 @@
 	name = Maurits van Mastrigt
 [push]
 	default = simple
+[core]
+	autocrlf = input
+	eol = lf
