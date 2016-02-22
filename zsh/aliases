@@ -1,30 +1,31 @@
-alias l="ls -lah"
-alias ..="cd .."
-alias ...="cd ../.."
-alias t="tree -a -L 3 -I '.git|node_modules'"
-alias d="cd $HOME/Development"
+alias l='ls -lah'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias t='tree -a -L 3 -I ".git|node_modules"'
+alias d='cd $HOME/Development'
 cdl () {
 	cd $@
 	l
 }
 
-alias v="vim"
-alias sv="sudo vim"
-alias poweroff="sudo shutdown -P now"
-alias top="htop"
-alias sync="$DOTFILES/tools/sync"
-alias paste="xclip -o -selection clipboard 2>/dev/null"
-alias p="paste"
-alias copy="xclip -i -selection clipboard 2>/dev/null"
-alias s="ag -iQ --hidden"
-alias screenshot="echo 'Making screenshot in 4 seconds..'; scrot -b -d 4 '%Y-%m-%d_%H:%M:%S.png' -e 'mv \$f ~/Downloads/'"
+alias v='vim'
+alias sv='sudo vim'
+alias poweroff='sudo shutdown -P now'
+alias top='htop'
+alias sync='$DOTFILES/tools/sync'
+alias paste='xclip -o -selection clipboard 2>/dev/null'
+alias p='paste'
+alias copy='xclip -i -selection clipboard 2>/dev/null'
+alias s='ag -iQ --hidden'
+alias screenshot='echo "Making screenshot in 4 seconds.."; scrot -b -d 4 "%Y-%m-%d_%H:%M:%S.png" -e "mv \$f ~/Downloads/"'
 music () {
-	if [[ "$(ps aux | grep mopidy | wc -l)" -gt 1 ]]; then
+	if [[ "$(ps aux | grep mopidy | wc -l)" -eq 1 ]]; then
 		sudo service mopidy start
 	fi
-	sleep 2
+	sleep 4
 	ncmpcpp
 }
+alias aws='docker run --rm -it -v $HOME/.aws:/root/.aws -v $PWD:/data -w /data cgswong/aws aws'
 
 # Git
 g () {
@@ -34,17 +35,17 @@ g () {
 		hub $*
 	fi
 }
-alias gac="g add -A . && g commit -m"
+alias gac='g add -A . && g commit -m'
 
 # Wireless
-alias wls="nmcli dev wifi list"
+alias wls='nmcli dev wifi list'
 wconnect () {
 	echo -n "[wifi] password for $1: "
 	read -s PW
 	echo
 	sudo nmcli dev wifi con "$1" password "$PW"
 }
-alias wrestart="sudo service network-manager restart"
+alias wrestart='sudo service network-manager restart'
 
 # Keyboard
 swapsuperandalt () {
@@ -57,8 +58,8 @@ swapsuperandalt () {
 }
 
 # Docker
-alias dcp="docker-compose ps"
-alias dcl="docker-compose logs"
+alias dcp='docker-compose ps'
+alias dcl='docker-compose logs'
 dcr () {
 	# Docker Compose reset
 	docker-compose build $1
@@ -81,7 +82,7 @@ php-serve () {
 }
 mysql-admin () {
 	local name=mysql-admin
-	if ! $(docker ps --format "{{.Names}}" | grep -qE "^$name\$"); then
+	if ! $(docker ps --format '{{.Names}}' | grep -qE "^$name\$"); then
 		docker run -d --name "$name" clue/adminer
 	else
 		docker start "$name"
@@ -111,8 +112,8 @@ adb () {
 }
 
 # Transmission
-alias tls="transmission-remote -n 'transmission:transmission' -l"
-alias tadd="transmission-remote -n 'transmission:transmission' -a"
+alias tls='transmission-remote -n "transmission:transmission" -l'
+alias tadd='transmission-remote -n "transmission:transmission" -a'
 trm () {
 	transmission-remote -n 'transmission:transmission' -t $@ --remove-and-delete
 }
