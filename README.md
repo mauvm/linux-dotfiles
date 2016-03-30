@@ -22,7 +22,7 @@ apt-get install -y \
 	xclip xdotool xbacklight network-manager \
 	xterm git-core silversearcher-ag htop jq g++ \
 	firefox flashplugin-installer zathura filezilla transmission-daemon vlc \
-	zip unzip wget curl httpie lftp scrot nmap
+	zip unzip unrar wget curl httpie lftp scrot nmap
 
 # Install Docker
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
@@ -174,4 +174,7 @@ apt-get update
 apt-get install -y mopidy mopidy-alsamixer mopidy-soundcloud mopidy-spotify ncmpcpp
 vim /etc/init.d/mopidy
 # > CONFIG_FILES="/usr/share/mopidy/conf.d:/etc/mopidy/mopidy.conf:/home/mauvm/.config/mopidy/mopidy.conf"
+
+# Docker
+# > Add DOCKER_OPTS="-r=false" to /etc/init/docker.conf to disable container auto start
 ```

@@ -25,7 +25,8 @@ music () {
 	sleep 4
 	ncmpcpp
 }
-alias aws='docker run --rm -it -v $HOME/.aws:/root/.aws -v $PWD:/data -w /data cgswong/aws aws'
+
+alias arduino='drx -v /dev/bus/usb:/dev/bus/usb pandrew/arduino arduino'
 
 # Git
 g () {
@@ -109,6 +110,19 @@ adbserv () {
 }
 adb () {
 	docker run --rm -ti --privileged -v $(pwd):/data --workdir=/data --net container:adbd sorccu/adb adb $@
+}
+alias aws='docker run --rm -it -v $HOME/.aws:/root/.aws -v $PWD:/data -w /data cgswong/aws aws'
+drx () {
+	# Run docker with X11 support
+	XSOCK=/tmp/.X11-unix
+	XAUTH=/tmp/.docker.xauth
+	touch $XAUTH
+	xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+	docker run --rm -it \
+		-v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH \
+		-e DISPLAY=unix$DISPLAY \
+		-v /etc/localtime:/etc/localtime:ro \
+		--device /dev/snd:/dev/snd $@
 }
 
 # Transmission

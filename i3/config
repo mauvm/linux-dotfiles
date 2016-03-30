@@ -140,13 +140,13 @@ bindcode 96 exec --no-startup-id volume +
 # Colors
 # class                 border  backgr. text    indicator
 client.focused          #101010 #444444 #ffffff #484e50
-client.focused_inactive #222222 #222222 #888888 #292d2e
-client.unfocused        #222222 #222222 #888888 #292d2e
-client.urgent           #2f343a #900000 #ffffff #900000
+client.focused_inactive #101010 #222222 #888888 #292d2e
+client.unfocused        #101010 #222222 #888888 #292d2e
+client.urgent           #101010 #900000 #ffffff #900000
 client.background       #101010
 
 # Window style
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 new_window 1pixel
 
 # Default workspaces
