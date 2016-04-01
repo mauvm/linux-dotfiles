@@ -1,0 +1,3 @@
+#!/bin/bash
+
+nmcli dev wifi list | grep yes | awk '{print $1}' | tr -d \'
