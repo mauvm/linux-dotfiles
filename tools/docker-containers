@@ -1,3 +1,4 @@
 #!/bin/bash
 
-docker ps --format='{{.Image}}' 2>/dev/null | sed 's/^[a-zA-Z0-9\-]*\///g;s/:[0-9\.]*$//g' | awk -vORS=', ' '{ print $1 }' | sed 's/, $//'
+#docker ps --format='{{.Image}}' 2>/dev/null | sed 's/^[a-zA-Z0-9\-]*\///g;s/:[0-9\.]*$//g' | awk -vORS=', ' '{ print $1 }' | sed 's/, $//'
+docker ps --format='{{.Names}}' 2>/dev/null | awk -vORS=', ' '{ print $1 }' | sed 's/, $//'
