@@ -21,8 +21,8 @@ alias screenshot='echo "Making screenshot in 4 seconds.."; scrot -b -d 4 "%Y-%m-
 music () {
 	if [[ "$(ps aux | grep mopidy | wc -l)" -eq 1 ]]; then
 		sudo service mopidy start
+		sleep 4
 	fi
-	sleep 4
 	ncmpcpp
 }
 
