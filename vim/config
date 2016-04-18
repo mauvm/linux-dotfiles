@@ -6,6 +6,10 @@ call vundle#begin('~/.dotfiles/vim/bundle')
 Plugin 'gmarik/Vundle.vim'
 
 " Start of plugins
+"Plugin 'godlygeek/csapprox'
+Plugin 'whatyouhide/vim-gotham'
+Bundle 'rodnaph/vim-color-schemes'
+
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'airblade/vim-gitgutter'
@@ -25,7 +29,9 @@ let mapleader = ','
 
 set number                             " Enable line numbers
 set t_Co=256                           " Enable 256 colors
+"set background=dark
 set laststatus=2                       " Always show statusbar
+"colorscheme gotham
 
 " No Beep
 set noeb vb t_vb=
