@@ -177,4 +177,14 @@ vim /etc/init.d/mopidy
 
 # Docker
 # > Add DOCKER_OPTS="-r=false" to /etc/init/docker.conf to disable container auto start
+
+# AVRDude
+add-apt-repository ppa:pmjdebruijn/avrdude-release
+apt-get update
+apt-get install -y avrdude
+
+# VLC codecs
+apt-add-repository ppa:strukturag/libde265
+apt-get update
+apt-get install -y vlc-plugin-libde265
 ```
