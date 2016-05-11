@@ -8,6 +8,7 @@ export ZSH_CUSTOM="$DOTFILES/zsh"
 
 # Path
 export PATH="/sbin:/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="./node_modules/.bin:$PATH"
 
 # Theme
 ZSH_THEME=Soliah

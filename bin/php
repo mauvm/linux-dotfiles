@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: Fix using php as shebang: #!/usr/bin/env php (the mounted volume is wrong)
+
 PHP_PORT=${PHP_PORT:-3000}
 
 docker run --rm -it -p "0.0.0.0:$PHP_PORT:$PHP_PORT" -v "$(pwd):/data" --workdir=/data php php "$@"
