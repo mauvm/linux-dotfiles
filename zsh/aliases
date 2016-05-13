@@ -25,6 +25,7 @@ music () {
 	fi
 	ncmpcpp
 }
+alias flushdns='sudo /etc/init.d/networking force-reload'
 
 alias arduino='drx -v /dev/bus/usb:/dev/bus/usb pandrew/arduino arduino'
 randpw () {
