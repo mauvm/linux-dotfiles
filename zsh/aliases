@@ -3,6 +3,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias t='tree -a -L 3 -I ".git|node_modules"'
 alias d='cd $HOME/Development'
+alias gimme='sudo chown -R $USER:$USER .'
 cdl () {
 	cd $@
 	l
