@@ -43,6 +43,7 @@ g () {
 	fi
 }
 alias gac='g add -A . && g commit -m'
+alias gs='g s'
 
 # Wireless
 alias wls='nmcli dev wifi list'
@@ -116,6 +117,9 @@ adbserv () {
 }
 adb () {
 	docker run --rm -ti --privileged -v $(pwd):/data --workdir=/data --net container:adbd sorccu/adb adb $@
+}
+fastboot () {
+	docker run --rm -ti --privileged -v $(pwd):/data --workdir=/data --net container:adbd sorccu/adb fastboot $@
 }
 alias aws='docker run --rm -it -v $HOME/.aws:/root/.aws -v $PWD:/data -w /data cgswong/aws aws'
 drx () {
