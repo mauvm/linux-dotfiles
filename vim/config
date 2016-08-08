@@ -148,6 +148,11 @@ set noet ci pi sts=0 sw=4 ts=4
 
 set smartindent
 
+" TSV
+au BufRead,BufNewFile *.tsv setfiletype tsv
+au FileType tsv set number noexpandtab shiftround smartindent autoindent shiftwidth=30 softtabstop=30 tabstop=30 nowrap list listchars=eol:\ ,tab:\ \ ,trail:·,precedes:…,extends:…,nbsp:‗
+command! -nargs=1 TSV set shiftwidth=<args> softtabstop=<args> tabstop=<args>
+
 " Change space indentation into tabs
 command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
 

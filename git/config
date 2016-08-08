@@ -7,6 +7,7 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr, %cn)%C(bold blue)'
 	d = diff
 	dc = diff --cached
+	lgr = !git remote update && git log origin/master --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr, %cn)%C(bold blue)'
 [user]
 	email = maurits@nerdieworks.nl
 	name = Maurits van Mastrigt

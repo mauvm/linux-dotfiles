@@ -187,4 +187,9 @@ apt-get install -y avrdude
 apt-add-repository ppa:strukturag/libde265
 apt-get update
 apt-get install -y vlc-plugin-libde265
+
+# Skype
+dpkg --add-architecture i386
+add-apt-repository "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
+apt-get update && sudo apt-get install skype
 ```
