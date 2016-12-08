@@ -1,6 +1,4 @@
 XTerm*selectToClipboard: true
-! XTerm*faceName: Bitstream Vera Serif Mono
-! XTerm*faceSize: 11
 XTerm*faceName: Droid Sans Mono:size=13:antialias=false
 XTerm*vt100*geometry: 80x60
 XTerm*saveLines: 16384
@@ -8,39 +6,51 @@ XTerm*loginShell: true
 XTerm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 XTerm*termName: XTerm-color
 XTerm*eightBitInput: false
+XTerm*locale: true
+XTerm*colorBDMode: true
 
 !BLK Cursor
 #define _color0        #000d18
 #define _color8        #000d18
+
 !RED Tag
-#define _color1        #e89393
-#define _color9        #e89393
+#define _color1        #696969
+#define _color9        #ff0000
+
 !GRN SpecialKey
 #define _color2        #9ece9e
 #define _color10       #9ece9e
+
 !YEL Keyword
-#define _color3        #f0dfaf
-#define _color11       #f0dfaf
+#define _color3        #00FF00
+#define _color11       #00FF00
+
 !BLU Number
-#define _color4        #8cd0d3
-#define _color12       #8cd0d3
+#define _color4        #00BB00
+#define _color12       #00FF00
+
 !MAG Precondit
-#define _color5        #c0bed1
-#define _color13       #c0bed1
+#define _color5        #00AA00
+#define _color13       #00AA00
+
 !CYN Float
-#define _color6        #dfaf8f
-#define _color14       #dfaf8f
+#define _color6        #00AA00
+#define _color14       #696969
+
 !WHT Search
 #define _color7        #efefef
 #define _color15       #efefef
+
 !FMT Include, StatusLine, ErrorMsg
 #define _colorBD       #ffcfaf
 #define _colorUL       #ccdc90
 #define _colorIT       #80d4aa
+
 !TXT Normal, Normal, Cursor
 #define _foreground    #dcdccc
 #define _background    #1f1f1f
 #define _cursorColor   #8faf9f
+
 URxvt*color0         : _color0
 URxvt*color1         : _color1
 URxvt*color2         : _color2

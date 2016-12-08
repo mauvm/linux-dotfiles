@@ -9,7 +9,7 @@ workspace_layout default
 
 # Font
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DroidSansMono 14
+font pango:DroidSansMono 12
 #font pango:DejaVuSansMono 14
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -150,9 +150,11 @@ for_window [class="^.*"] border pixel 2
 new_window 1pixel
 
 # Default workspaces
-# Use xprop to determine class
+# Use `xwininfo -int` and `xprop -id $windowid | grep WM_CLASS` to determine class
 assign [class="xterm"] 1
 assign [class="Firefox"] 2
+#assign [class="google-chrome"] 2
+#assign [class="google-chrome-stable"] 2
 assign [class="telegram"] 3
 assign [class="Scudcloud"] 4
 

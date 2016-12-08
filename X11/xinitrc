@@ -14,4 +14,7 @@ syndaemon -d -i 0.3
 # Redshift
 redshift -c $DOTFILES/redshift/config &
 
-exec i3
+# Reload XTerm config
+cat ~/.Xdefaults | xrdb -load
+
+#exec i3

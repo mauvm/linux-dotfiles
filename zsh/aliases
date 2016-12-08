@@ -3,7 +3,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias t='tree -a -L 3 -I ".git|node_modules"'
 alias d='cd $HOME/Development'
-alias gimme='sudo chown -R $USER:$USER .'
+alias gimme='sudo chown -R $USER:$USER'
 cdl () {
 	cd $@
 	l
@@ -27,6 +27,16 @@ music () {
 	ncmpcpp
 }
 alias flushdns='sudo /etc/init.d/networking force-reload'
+alias showcolors='for x in 0 1 4 5 7 8; do for i in `seq 30 37`; do for a in `seq 40 47`; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";'
+ts () {
+	if [ -n "$1" ]; then
+		date -ud "@$1"
+	else
+		date +%s
+	fi
+}
+alias vpn='sudo openvpn --config ~/Development/Nerdieworks/OpenVPN/vpnht.ovpn'
+alias tpr='while true; do clear && tls && sleep 3; done'
 
 alias arduino='drx -v /dev/bus/usb:/dev/bus/usb pandrew/arduino arduino'
 randpw () {

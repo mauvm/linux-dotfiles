@@ -44,6 +44,7 @@ autocmd BufNewFile,BufReadPost *.es6 set filetype=javascript
 let g:vim_markdown_folding_disabled=1
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.txt set filetype=markdown
 
 set backspace=indent,eol,start
 
@@ -112,7 +113,7 @@ hi Search cterm=NONE ctermfg=Blue ctermbg=Black
 augroup vimrcEx
 au!
 	" For all text files set 'textwidth' to 120 characters.
-	autocmd FileType text setlocal textwidth=120
+	" autocmd FileType text setlocal textwidth=120
 
 	" When editing a file, always jump to the last known cursor position.
 	" Don't do it when the position is invalid or when inside an event handler

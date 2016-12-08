@@ -33,13 +33,13 @@ srelink () {
 }
 
 separator "Symlinking files in home directory"
-relink "$DIR/X11/xinitrc"    "$HOME/.xinitrc"
+#relink "$DIR/X11/xinitrc"    "$HOME/.xinitrc"
 relink "$DIR/xterm/config"   "$HOME/.Xdefaults"
 relink "$DIR/zsh/config"     "$HOME/.zshrc"
 relink "$DIR/zsh/aliases"    "$HOME/.aliases"
-relink "$DIR/zim/src"        "$HOME/.zim"
-relink "$DIR/zim/config"     "$HOME/.zimrc"
-relink "$DIR/zim/zlogin"     "$HOME/.zlogin"
+#relink "$DIR/zim/src"        "$HOME/.zim"
+#relink "$DIR/zim/config"     "$HOME/.zimrc"
+#relink "$DIR/zim/zlogin"     "$HOME/.zlogin"
 relink "$DIR/i3/"            "$HOME/.i3"
 relink "$DIR/i3/status.conf" "$HOME/.i3status.conf"
 relink "$DIR/git/config"     "$HOME/.gitconfig"
@@ -49,31 +49,31 @@ separator "Installing FZF"
 "$DIR/fzf/install" --key-bindings --completion
 
 separator "Symlinking X11 configs & scripts"
-sudo rm /etc/X11/xorg.conf.bak 2> /dev/null
-sudo mv /etc/X11/xorg.conf /etc/X11/xorg.conf.bak 2> /dev/null
-sudo cp "$DIR/X11/xorg.conf" /etc/X11/
+#sudo rm /etc/X11/xorg.conf.bak 2> /dev/null
+#sudo mv /etc/X11/xorg.conf /etc/X11/xorg.conf.bak 2> /dev/null
+#sudo cp "$DIR/X11/xorg.conf" /etc/X11/
 sudo rm /etc/X11/xorg.conf.d/50-synaptics.conf 2> /dev/null
 sudo cp "$DIR/X11/50-synaptics.conf" /etc/X11/xorg.conf.d/
-sudo rm /etc/X11/Xsession.d/99x11-common_start 2> /dev/null
-sudo cp "$DIR/X11/start" "/etc/X11/Xsession.d/99x11-common_start"
-sudo rm /etc/X11/Xsession.d/99x11-common_start 2> /dev/null
-sudo cp "$DIR/X11/start" "/etc/X11/Xsession.d/99x11-common_start"
+#sudo rm /etc/X11/Xsession.d/99x11-common_start 2> /dev/null
+#sudo cp "$DIR/X11/start" "/etc/X11/Xsession.d/99x11-common_start"
+#sudo rm /etc/X11/Xsession.d/99x11-common_start 2> /dev/null
+#sudo cp "$DIR/X11/start" "/etc/X11/Xsession.d/99x11-common_start"
 
 separator "Symlinking bin/ into /usr/local/bin"
 for FILE in "$DIR"/bin/*; do
 	srelink "$FILE" /usr/local/bin/`basename $FILE`
 done
 
-separator "Symlinking cursor pack"
-sudo mkdir /usr/share/cursors 2>/dev/null
-sudo unlink /usr/share/cursors/WhiteCursor
-srelink "$DIR/cursors/WhiteCursor/" "/usr/share/cursors/WhiteCursor"
+#separator "Symlinking cursor pack"
+#sudo mkdir /usr/share/cursors 2>/dev/null
+#sudo unlink /usr/share/cursors/WhiteCursor
+#srelink "$DIR/cursors/WhiteCursor/" "/usr/share/cursors/WhiteCursor"
 
-separator "Symlinking Mopidy & NCMPCPP"
-relink "$DIR/mopidy/ncmpcpp/" "$HOME/.ncmpcpp"
-sudo rm /etc/mopidy/mopidy.conf 2> /dev/null
-sudo cp "$DIR/mopidy/config" /etc/mopidy/mopidy.conf
-sudo chown root:root /etc/mopidy/mopidy.conf
-sudo rm /etc/pulse/default.pa 2> /dev/null
-sudo cp "$DIR/pulse/default.pa" /etc/pulse/default.pa
-sudo chown root:root /etc/pulse/default.pa
+#separator "Symlinking Mopidy & NCMPCPP"
+#relink "$DIR/mopidy/ncmpcpp/" "$HOME/.ncmpcpp"
+#sudo rm /etc/mopidy/mopidy.conf 2> /dev/null
+#sudo cp "$DIR/mopidy/config" /etc/mopidy/mopidy.conf
+#sudo chown root:root /etc/mopidy/mopidy.conf
+#sudo rm /etc/pulse/default.pa 2> /dev/null
+#sudo cp "$DIR/pulse/default.pa" /etc/pulse/default.pa
+#sudo chown root:root /etc/pulse/default.pa
