@@ -2,7 +2,7 @@ alias l='ls -lah'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias t='tree -a -L 3 -I ".git|node_modules"'
-alias d='cd $HOME/Development'
+alias d='cd $HOME/Development/Foodsy/api'
 alias gimme='sudo chown -R $USER:$USER'
 cdl () {
 	cd $@
@@ -35,7 +35,7 @@ ts () {
 		date +%s
 	fi
 }
-alias vpn='sudo openvpn --config ~/Development/Nerdieworks/OpenVPN/vpnht.ovpn'
+alias vpn='sudo openvpn --config ~/Development/Nerdieworks/OpenVPN/nl-256b.ovpn'
 alias tpr='while true; do clear && tls && sleep 3; done'
 
 alias arduino='drx -v /dev/bus/usb:/dev/bus/usb pandrew/arduino arduino'
@@ -58,9 +58,12 @@ alias gs='g s'
 # Wireless
 alias wls='nmcli dev wifi list'
 wconnect () {
-	echo -n "[wifi] password for $1: "
-	read -s PW
-	echo
+	PW=$(sudo cat /etc/NetworkManager/system-connections/"$1"* 2>/dev/null | grep 'psk=' | tail -n1 | cut -c5-)
+	if [ -z "$PW" ]; then
+		echo -n "[wifi] password for $1: "
+		read -s PW
+		echo
+	fi
 	sudo nmcli dev wifi con "$1" password "$PW"
 }
 alias wrestart='sudo service network-manager restart'
@@ -111,26 +114,28 @@ mysql-admin () {
 	local host="$name.local"
 	local updated="$ip      $host"
 
-	if $(cat /etc/hosts | grep -q 'mysql-admin.local'); then
-		sudo sed -i "s/^[0-9\. \t]*$host\$/$updated/" /etc/hosts
-	else
-		echo "$updated" | sudo tee /etc/hosts > /dev/null
-	fi
+	# NOTE: OVERWRITES /etc/hosts
+	#if $(cat /etc/hosts | grep -q 'mysql-admin.local'); then
+	#	sudo sed -i "s/^[0-9\. \t]*$host\$/$updated/" /etc/hosts
+	#else
+	#	echo "$updated" | sudo tee /etc/hosts > /dev/null
+	#fi
 }
 1pw () {
 	cd ~/Dropbox/1Password/1Password.agilekeychain/
 	firefox http://localhost:4000/1Password.html
 	php-serve 4000
 }
-adbserv () {
-	docker start adbd || docker run -d --privileged -v /dev/bus/usb:/dev/bus/usb --name adbd sorccu/adb
-}
-adb () {
-	docker run --rm -ti --privileged -v $(pwd):/data --workdir=/data --net container:adbd sorccu/adb adb $@
-}
-fastboot () {
-	docker run --rm -ti --privileged -v $(pwd):/data --workdir=/data --net container:adbd sorccu/adb fastboot $@
-}
+
+#adbserv () {
+#	docker start adbd || docker run -d --privileged -v /dev/bus/usb:/dev/bus/usb --name adbd sorccu/adb
+#}
+#adb () {
+#	docker run --rm -ti --privileged -v $(pwd):/data --workdir=/data --net container:adbd sorccu/adb adb $@
+#}
+#fastboot () {
+#	docker run --rm -ti --privileged -v $(pwd):/data --workdir=/data --net container:adbd sorccu/adb fastboot $@
+#}
 alias aws='docker run --rm -it -v $HOME/.aws:/root/.aws -v $PWD:/data -w /data cgswong/aws aws'
 drx () {
 	# Run docker with X11 support
@@ -211,3 +216,5 @@ transfer () {
 
 	echo -n $url
 }
+
+alias fa='cd ~/Development/Foodsy/api'

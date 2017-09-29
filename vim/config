@@ -9,6 +9,7 @@ Plugin 'gmarik/Vundle.vim'
 "Plugin 'godlygeek/csapprox'
 Plugin 'whatyouhide/vim-gotham'
 Bundle 'rodnaph/vim-color-schemes'
+Plugin 'leafgarland/typescript-vim'
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
@@ -83,7 +84,7 @@ let g:ctrlp_prompt_mappings = {
 
 " Exclude files and folders from indexing.
 let g:ctrlp_custom_ignore = {
-	\'dir': '\v(\.git|cache|vendor|node_modules)$',
+	\'dir': '\v(\.git|cache|node_modules)$',
 	\'file': '\v(\.pyc|tags)$'
 	\ }
 
@@ -148,6 +149,10 @@ autocmd BufWritePre * :call TrimWhiteSpace()
 set noet ci pi sts=0 sw=4 ts=4
 
 set smartindent
+
+" Modeline magic baby
+set modeline
+set modelines=5
 
 " TSV
 au BufRead,BufNewFile *.tsv setfiletype tsv

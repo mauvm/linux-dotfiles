@@ -12,7 +12,7 @@ xrdb -merge "$HOME/.dotfiles/xterm/config"
 syndaemon -d -i 0.3
 
 # Redshift
-redshift -c $DOTFILES/redshift/config &
+#redshift -c $DOTFILES/redshift/config &
 
 # Reload XTerm config
 cat ~/.Xdefaults | xrdb -load
